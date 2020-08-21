@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
+
 const app = express();
 
 mongoose.connect('mongodb+srv://userSam1:FqibDDLtGQEVU55@clustersam.l5vws.mongodb.net/<dbname>?retryWrites=true&w=majority',
@@ -19,12 +22,9 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.post('api/sauces', (req, res, next) => {
-    console.log(req.body);
-});
+app.use('/api/sauces', stuffRoutes);
+app.use('/api/auth', userRoutes);
 
-app.use((req, res, next) => {
-    res.json({ message: 'Votre requête a bien été reçue'});
-});
+
 
 module.exports = app;
