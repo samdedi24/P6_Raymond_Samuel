@@ -28,7 +28,7 @@ exports.signup = (req, res, next) => {
     validPassword.validate(req.body.password)
   ) {
     const maskedMail = MaskData.maskEmail2(req.body.email);
-    console.los(maskedMail);
+    console.log(maskedMail);
     bcrypt
       .hash(req.body.password, 10)
       .then((hash) => {
